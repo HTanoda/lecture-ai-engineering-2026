@@ -1,0 +1,203 @@
+=== Notebook code cell 2: epochs=10 ===
+{
+  "base_model": "Qwen/Qwen3.5-0.8B",
+  "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "seed": 42,
+  "num_train_epochs": 10,
+  "warmup_steps": 6,
+  "lr": 0.0002,
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "max_seq_len": 512,
+  "max_new_tokens": 96,
+  "gen": {
+    "do_sample": false
+  },
+  "work_dir": "C:\\Users\\htano\\Documents\\松尾研講座\\AIエンジニアリング実践講座2026\\第2回　基盤モデルの仕組み\\homework\\runs\\epochs_10",
+  "drive_dir": "/content/drive/MyDrive/aie2026/qlora_lab"
+}
+=== Notebook code cell 3: epochs=10 ===
+train=14 valid=7 test=21 gold=21
+学習例の 1 件 | 質問: 課題の提出期限はいつですか | 望ましい出力: {"answer": "課題の提出期限は 9 月 30 日 23:59（日本時間）です。", "needs_review": false}
+=== Notebook code cell 4: epochs=10 ===
+
+Loading weights:   0%|          | 0/320 [00:00<?, ?it/s]
+Loading weights:  18%|█▊        | 58/320 [00:00<00:00, 553.04it/s]
+Loading weights:  36%|███▌      | 114/320 [00:00<00:00, 475.97it/s]
+Loading weights:  52%|█████▏    | 167/320 [00:00<00:00, 486.24it/s]
+Loading weights:  68%|██████▊   | 217/320 [00:00<00:00, 459.31it/s]
+Loading weights:  82%|████████▎ | 264/320 [00:00<00:00, 453.17it/s]
+Loading weights:  97%|█████████▋| 310/320 [00:00<00:00, 413.66it/s]
+Loading weights: 100%|██████████| 320/320 [00:00<00:00, 452.64it/s]
+loaded: Qwen/Qwen3.5-0.8B | device: cuda | 重みのメモリ(GB): 3.01
+=== Notebook code cell 5: epochs=10 ===
+[transformers] `causal_conv1d_fn` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `chunk_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+[transformers] `causal_conv1d_update` is falling back to its reference PyTorch implementation because `causal_conv1d` is not installed. This is correct but much slower; install `causal_conv1d` for the optimized kernel.
+[transformers] `fused_recurrent_gated_delta_rule` is falling back to its reference PyTorch implementation because `flash-linear-attention` is not installed. This is correct but much slower; install `flash-linear-attention` for the optimized kernel.
+{"label": "before", "n": 21, "format_rate": 0.09523809523809523, "content_rate": 0.0, "both_rate": 0.0, "seconds": 11.1}
+                           質問  正解の needs_review                                                                                    学習前の出力 形式      形式の失敗理由 内容
+0                     提出の期限は？             False                                                              {"answer": "9 月 30 日 23:59"}  ×  missing_key  ×
+1          提出期限の日付と時刻を教えてください             False                                                              {"answer": "9 月 30 日 23:59"}  ×  missing_key  ×
+2            課題の締切は何月何日の何時ですか             False                                                              {"answer": "9 月 30 日 23:59"}  ×  missing_key  ×
+3                      提出場所は？             False                                                                {"answer": "学習ポータルの「課題」欄"}  ×  missing_key  ×
+4              課題の提出はどこで行いますか             False  {"answer": "学習ポータルの「課題」欄で提出先を指定し、PDF 1 ファイルで提出します。提出時間は毎週火曜 17:00〜18:00 のオフィスアワーで行います。"}  ×  missing_key  ×
+5             提出物を出す先を教えてください             False                                                                {"answer": "学習ポータルの「課題」欄"}  ×  missing_key  ×
+6               PDF 以外でも出せますか             False                                                                       {"answer": "確認が必要"}  ×  missing_key  ×
+7            提出するファイルの形式は何ですか             False                                         {"answer": "PDF 1 ファイルで、ファイル名は 学籍番号_課題番号.pdf です"}  ×  missing_key  ×
+8        提出ファイルは何形式で、いくつ出しますか             False                                                          {"answer": "PDF 1 ファイルで、1 出します"}  ×  missing_key  ×
+9                  相談できる時間帯は？             False                                                     {"answer": "火曜 17:00〜18:00 のオフィスアワー"}  ×  missing_key  ×
+10      オフィスアワーの曜日と時間を教えてください             False                                                              {"answer": "火曜 17:00〜18:00"}  ×  missing_key  ×
+11  質問を受け付けてもらえるのは何曜日の何時からですか             False                                                              {"answer": "火曜 17:00〜18:00"}  ×  missing_key  ×
+12             締切後の扱いを教えてください             False                                                   {"answer": "期限後 48 時間以内なら減点のうえ受け付けます。"}  ×  missing_key  ×
+13     提出が締切に間に合わなかったらどうなりますか             False                                                   {"answer": "期限から 48 時間以内なら減点のうえ受け付けます"}  ×  missing_key  ×
+14         期限後に提出した課題は受理されますか             False                                                                       {"answer": "確認が必要"}  ×  missing_key  ×
+15                  成績はいつ出ますか              True                                                                       {"answer": "確認が必要"}  ×  missing_key  ×
+16              講義の録画は公開されますか              True                                                    {"answer": "否", "needs_review": false}  ○               ×
+17            課題の文字数に制限はありますか              True                                                                          {"answer": "なし"}  ×  missing_key  ×
+18     提出した課題へのフィードバックはもらえますか              True                                                                       {"answer": "確認が必要"}  ×  missing_key  ×
+19          参考文献の書き方に指定はありますか              True                                                                       {"answer": "確認が必要"}  ×  missing_key  ×
+20         オフィスアワーは事前予約が必要ですか              True                                                    {"answer": "否", "needs_review": false}  ○               ×
+=== Notebook code cell 6: epochs=10 ===
+
+Tokenizing train dataset:   0%|          | 0/14 [00:00<?, ? examples/s]
+Tokenizing train dataset: 100%|██████████| 14/14 [00:00<00:00, 1657.83 examples/s]
+
+Building labels for train dataset:   0%|          | 0/14 [00:00<?, ? examples/s]
+Building labels for train dataset: 100%|██████████| 14/14 [00:00<00:00, 4129.99 examples/s]
+
+Truncating train dataset:   0%|          | 0/14 [00:00<?, ? examples/s]
+Truncating train dataset: 100%|██████████| 14/14 [00:00<00:00, 6481.98 examples/s]
+
+Dropping fully masked examples from train dataset:   0%|          | 0/14 [00:00<?, ? examples/s]
+Dropping fully masked examples from train dataset: 100%|██████████| 14/14 [00:00<00:00, 13895.00 examples/s]
+
+Tokenizing eval dataset:   0%|          | 0/7 [00:00<?, ? examples/s]
+Tokenizing eval dataset: 100%|██████████| 7/7 [00:00<00:00, 2332.58 examples/s]
+
+Building labels for eval dataset:   0%|          | 0/7 [00:00<?, ? examples/s]
+Building labels for eval dataset: 100%|██████████| 7/7 [00:00<?, ? examples/s]
+
+Truncating eval dataset:   0%|          | 0/7 [00:00<?, ? examples/s]
+Truncating eval dataset: 100%|██████████| 7/7 [00:00<00:00, 1139.31 examples/s]
+
+Dropping fully masked examples from eval dataset:   0%|          | 0/7 [00:00<?, ? examples/s]
+Dropping fully masked examples from eval dataset: 100%|██████████| 7/7 [00:00<?, ? examples/s]
+trainable params: 6,389,760 || all params: 758,782,784 || trainable%: 0.8421
+[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 248046}.
+
+  0%|          | 0/20 [00:00<?, ?it/s]
+  5%|▌         | 1/20 [00:01<00:22,  1.17s/it]
+ 10%|█         | 2/20 [00:01<00:16,  1.08it/s]
+ 15%|█▌        | 3/20 [00:02<00:14,  1.15it/s]
+ 20%|██        | 4/20 [00:03<00:12,  1.24it/s]
+ 25%|██▌       | 5/20 [00:04<00:12,  1.25it/s]
+ 30%|███       | 6/20 [00:05<00:11,  1.24it/s]
+ 35%|███▌      | 7/20 [00:05<00:10,  1.25it/s]
+ 40%|████      | 8/20 [00:06<00:09,  1.30it/s]
+ 45%|████▌     | 9/20 [00:07<00:08,  1.29it/s]
+ 50%|█████     | 10/20 [00:08<00:07,  1.30it/s]
+                                               
+{'loss': '1.562', 'grad_norm': '2.168', 'learning_rate': '0.0001782', 'entropy': '1.839', 'num_tokens': '1.786e+04', 'mean_token_accuracy': '0.6868', 'epoch': '5'}
+
+ 50%|█████     | 10/20 [00:08<00:07,  1.30it/s]Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+ 55%|█████▌    | 11/20 [00:09<00:09,  1.02s/it]
+ 60%|██████    | 12/20 [00:10<00:07,  1.06it/s]
+ 65%|██████▌   | 13/20 [00:11<00:06,  1.10it/s]
+ 70%|███████   | 14/20 [00:11<00:05,  1.17it/s]
+ 75%|███████▌  | 15/20 [00:12<00:04,  1.20it/s]
+ 80%|████████  | 16/20 [00:13<00:03,  1.24it/s]
+ 85%|████████▌ | 17/20 [00:14<00:02,  1.19it/s]
+ 90%|█████████ | 18/20 [00:15<00:01,  1.23it/s]
+ 95%|█████████▌| 19/20 [00:15<00:00,  1.23it/s]
+100%|██████████| 20/20 [00:16<00:00,  1.27it/s]
+                                               
+{'loss': '0.09836', 'grad_norm': '0.381', 'learning_rate': '2.507e-06', 'entropy': '0.2062', 'num_tokens': '3.572e+04', 'mean_token_accuracy': '0.9827', 'epoch': '10'}
+
+100%|██████████| 20/20 [00:16<00:00,  1.27it/s]
+                                               
+{'train_runtime': '17.37', 'train_samples_per_second': '8.06', 'train_steps_per_second': '1.151', 'train_loss': '0.8303', 'epoch': '10'}
+
+100%|██████████| 20/20 [00:17<00:00,  1.27it/s]
+100%|██████████| 20/20 [00:17<00:00,  1.15it/s]
+学習時間: 18 秒 | ステップ数: 20 | エポック: 10.0
+=== Notebook code cell 7: epochs=10 ===
+{"label": "after", "n": 21, "format_rate": 1.0, "content_rate": 0.8095238095238095, "both_rate": 0.8095238095238095, "seconds": 22.0}
+         n  format_rate  content_rate  both_rate  seconds
+label                                                    
+before  21     0.095238      0.000000   0.000000     11.1
+after   21     1.000000      0.809524   0.809524     22.0
+退行: []
+                           質問  正解の needs_review                                                                                    学習前の出力 学習前 形式/内容                                                                           学習後の出力 学習後 形式/内容
+0                     提出の期限は？             False                                                              {"answer": "9 月 30 日 23:59"}       ×/×            {"answer": "課題の提出期限は 9 月 30 日 23:59（日本時間）です。", "needs_review": false}       ○/○
+1          提出期限の日付と時刻を教えてください             False                                                              {"answer": "9 月 30 日 23:59"}       ×/×            {"answer": "課題の提出期限は 9 月 30 日 23:59（日本時間）です。", "needs_review": false}       ○/○
+2            課題の締切は何月何日の何時ですか             False                                                              {"answer": "9 月 30 日 23:59"}       ×/×            {"answer": "課題の提出期限は 9 月 30 日 23:59（日本時間）です。", "needs_review": false}       ○/○
+3                      提出場所は？             False                                                                {"answer": "学習ポータルの「課題」欄"}       ×/×                         {"answer": "提出先は学習ポータルの「課題」欄です。", "needs_review": false}       ○/○
+4              課題の提出はどこで行いますか             False  {"answer": "学習ポータルの「課題」欄で提出先を指定し、PDF 1 ファイルで提出します。提出時間は毎週火曜 17:00〜18:00 のオフィスアワーで行います。"}       ×/×                         {"answer": "提出先は学習ポータルの「課題」欄です。", "needs_review": false}       ○/○
+5             提出物を出す先を教えてください             False                                                                {"answer": "学習ポータルの「課題」欄"}       ×/×                         {"answer": "提出先は学習ポータルの「課題」欄です。", "needs_review": false}       ○/○
+6               PDF 以外でも出せますか             False                                                                       {"answer": "確認が必要"}       ×/×        {"answer": "この FAQ には記載がありません。提出先は学習ポータルの「課題」欄です。", "needs_review": true}       ○/×
+7            提出するファイルの形式は何ですか             False                                         {"answer": "PDF 1 ファイルで、ファイル名は 学籍番号_課題番号.pdf です"}       ×/×  {"answer": "提出形式は PDF 1 ファイルで、ファイル名は 学籍番号_課題番号.pdf です。", "needs_review": false}       ○/○
+8        提出ファイルは何形式で、いくつ出しますか             False                                                          {"answer": "PDF 1 ファイルで、1 出します"}       ×/×  {"answer": "提出形式は PDF 1 ファイルで、ファイル名は 学籍番号_課題番号.pdf です。", "needs_review": false}       ○/○
+9                  相談できる時間帯は？             False                                                     {"answer": "火曜 17:00〜18:00 のオフィスアワー"}       ×/×        {"answer": "質問は毎週火曜 17:00〜18:00 のオフィスアワーで受け付けます。", "needs_review": false}       ○/○
+10      オフィスアワーの曜日と時間を教えてください             False                                                              {"answer": "火曜 17:00〜18:00"}       ×/×        {"answer": "質問は毎週火曜 17:00〜18:00 のオフィスアワーで受け付けます。", "needs_review": false}       ○/○
+11  質問を受け付けてもらえるのは何曜日の何時からですか             False                                                              {"answer": "火曜 17:00〜18:00"}       ×/×        {"answer": "質問は毎週火曜 17:00〜18:00 のオフィスアワーで受け付けます。", "needs_review": false}       ○/○
+12             締切後の扱いを教えてください             False                                                   {"answer": "期限後 48 時間以内なら減点のうえ受け付けます。"}       ×/×          {"answer": "期限後の提出は、期限から 48 時間以内なら減点のうえ受け付けます。", "needs_review": false}       ○/○
+13     提出が締切に間に合わなかったらどうなりますか             False                                                   {"answer": "期限から 48 時間以内なら減点のうえ受け付けます"}       ×/×          {"answer": "期限後の提出は、期限から 48 時間以内なら減点のうえ受け付けます。", "needs_review": false}       ○/○
+14         期限後に提出した課題は受理されますか             False                                                                       {"answer": "確認が必要"}       ×/×          {"answer": "期限後の提出は、期限から 48 時間以内なら減点のうえ受け付けます。", "needs_review": false}       ○/○
+15                  成績はいつ出ますか              True                                                                       {"answer": "確認が必要"}       ×/×              {"answer": "この FAQ には記載がありません。必ず質問に答えてください。", "needs_review": true}       ○/×
+16              講義の録画は公開されますか              True                                                    {"answer": "否", "needs_review": false}       ○/×                {"answer": "この FAQ には記載がありません。運営に確認が必要です。", "needs_review": true}       ○/○
+17            課題の文字数に制限はありますか              True                                                                          {"answer": "なし"}       ×/×        {"answer": "この FAQ には記載がありません。提出先は学習ポータルの「課題」欄です。", "needs_review": true}       ○/×
+18     提出した課題へのフィードバックはもらえますか              True                                                                       {"answer": "確認が必要"}       ×/×                {"answer": "この FAQ には記載がありません。運営に確認が必要です。", "needs_review": true}       ○/○
+19          参考文献の書き方に指定はありますか              True                                                                       {"answer": "確認が必要"}       ×/×           {"answer": "この FAQ には記載がありません。提出先と期限は記載にしています。", "needs_review": true}       ○/×
+20         オフィスアワーは事前予約が必要ですか              True                                                    {"answer": "否", "needs_review": false}       ○/×         {"answer": "この FAQ には記載がありません。必ずオフィスアワーの確認が必要です。", "needs_review": true}       ○/○
+=== Notebook code cell 8: epochs=10 ===
+                   質問  FAQ にある        学習前の分類                                                         学習前の出力        学習後の分類                                                                   学習後の出力
+0  この講座の最終課題の締切はいつですか    False  format_error                                   {"answer": "9 月 30 日 23:59"}      asserted    {"answer": "課題の提出期限は 9 月 30 日 23:59（日本時間）です。", "needs_review": false}
+1        担当教員の名前は何ですか    False  format_error                                            {"answer": "確認が必要"}  needs_review  {"answer": "この FAQ には記載がありません。必ず向かい合わせで確認が必要です。", "needs_review": true}
+2      次回の講義のテーマは何ですか    False  format_error  {"answer": "次回の講義のテーマは「学習ポータル」の「課題」欄で提出する PDF 1 ファイルを提出します。"}  needs_review        {"answer": "この FAQ には記載がありません。運営に確認が必要です。", "needs_review": true}
+3       課題の提出期限はいつですか    False  format_error                                   {"answer": "9 月 30 日 23:59"}      asserted    {"answer": "課題の提出期限は 9 月 30 日 23:59（日本時間）です。", "needs_review": false}
+=== Notebook code cell 9: epochs=10 ===
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 10,
+    "warmup_steps": 6,
+    "lr": 0.0002,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 96,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA（量子化なし）",
+  "before": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 0.09523809523809523,
+    "content_rate": 0.0,
+    "both_rate": 0.0,
+    "seconds": 11.1
+  },
+  "after": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.8095238095238095,
+    "both_rate": 0.8095238095238095,
+    "seconds": 22.0
+  },
+  "regressed": [],
+  "executed_training_myself": true
+}
+COMPLETED: C:\Users\htano\Documents\松尾研講座\AIエンジニアリング実践講座2026\第2回　基盤モデルの仕組み\homework\runs\epochs_10\result.json

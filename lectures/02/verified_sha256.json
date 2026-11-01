@@ -1,0 +1,18 @@
+{
+  "runs/epochs_10/eval_after.json": "4c85f34e9031f37c8a893499d6002936f57ee3dfa1b2bcaa116381e0fab7da99",
+  "runs/epochs_10/eval_before.json": "8cdebea785a06d79d0d5b80aec092b312742180aad33f6785b0592bf9f5ad73c",
+  "runs/epochs_10/gold.json": "8b99cd31e6563082c4c0e533546c0ffd1e9bc819d9f11979800a5529d45da9e1",
+  "runs/epochs_10/result.json": "4bf93637e00bf4dac4168de9f6d4d5082cf905f7dc510ee62e3c36c9a136153e",
+  "runs/epochs_10/test.jsonl": "b0d24cf56710a5539c42230ad5bb0b6ffc1f0b313a40603e1a03ad0b4bce9295",
+  "runs/epochs_10/train.jsonl": "33725676d0c9e6dfe8d2e0977dddda1b1d74f2892b60b06d39c5248c3c9d706b",
+  "runs/epochs_10/trainer_state.json": "dd08ec9db53a7efe8472a4c95e76497ed71c2927a5fcd5f9f51005d59e688413",
+  "runs/epochs_10/training_args_effective.json": "577a2bd1f98cd24a8b49aba5522caef248d6d45295c19e7bfc963c42385503f8",
+  "runs/epochs_20/eval_after.json": "a24089c0a9c22e94ac5a99426f87981aeff916a8e624e7496091cfb930ecdb39",
+  "runs/epochs_20/eval_before.json": "0400034ba15874f0f816972013efcc557d4c454dc2a632e7b0dd0c7a98a4a551",
+  "runs/epochs_20/gold.json": "8b99cd31e6563082c4c0e533546c0ffd1e9bc819d9f11979800a5529d45da9e1",
+  "runs/epochs_20/result.json": "1ce545d88e05b9645a38c1351b05e55bee49e4c828af64846aa10ac3d5a9544c",
+  "runs/epochs_20/test.jsonl": "b0d24cf56710a5539c42230ad5bb0b6ffc1f0b313a40603e1a03ad0b4bce9295",
+  "runs/epochs_20/train.jsonl": "33725676d0c9e6dfe8d2e0977dddda1b1d74f2892b60b06d39c5248c3c9d706b",
+  "runs/epochs_20/trainer_state.json": "f78fe721701b2177c658360054685579fd9f2cc39fff29b06d39a2db8e555d27",
+  "runs/epochs_20/training_args_effective.json": "577a2bd1f98cd24a8b49aba5522caef248d6d45295c19e7bfc963c42385503f8"
+}
