@@ -1,0 +1,134 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 10,
+    "warmup_steps": 6,
+    "lr": 0.0002,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 96,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA（量子化なし）",
+  "before": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 0.09523809523809523,
+    "content_rate": 0.0,
+    "both_rate": 0.0,
+    "seconds": 11.1
+  },
+  "after": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.8095238095238095,
+    "both_rate": 0.8095238095238095,
+    "seconds": 22.0
+  },
+  "regressed": [],
+  "knowledge": [
+    {
+      "質問": "この講座の最終課題の締切はいつですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"9 月 30 日 23:59\"}",
+      "学習後の分類": "asserted",
+      "学習後の出力": "{\"answer\": \"課題の提出期限は 9 月 30 日 23:59（日本時間）です。\", \"needs_review\": false}"
+    },
+    {
+      "質問": "担当教員の名前は何ですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"確認が必要\"}",
+      "学習後の分類": "needs_review",
+      "学習後の出力": "{\"answer\": \"この FAQ には記載がありません。必ず向かい合わせで確認が必要です。\", \"needs_review\": true}"
+    },
+    {
+      "質問": "次回の講義のテーマは何ですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"次回の講義のテーマは「学習ポータル」の「課題」欄で提出する PDF 1 ファイルを提出します。\"}",
+      "学習後の分類": "needs_review",
+      "学習後の出力": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}"
+    },
+    {
+      "質問": "課題の提出期限はいつですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"9 月 30 日 23:59\"}",
+      "学習後の分類": "asserted",
+      "学習後の出力": "{\"answer\": \"課題の提出期限は 9 月 30 日 23:59（日本時間）です。\", \"needs_review\": false}"
+    }
+  ],
+  "executed_training_myself": true,
+  "training": {
+    "seconds": 17.51002319995314,
+    "global_step": 20,
+    "epoch": 10.0,
+    "final_logged_loss": 0.0983639657497406,
+    "final_logged_loss_step": 20,
+    "mean_training_loss": 0.8303492039442062,
+    "loss_log": [
+      {
+        "loss": 1.5623344421386718,
+        "grad_norm": 2.1675195693969727,
+        "learning_rate": 0.000178183148246803,
+        "entropy": 1.8387652069330216,
+        "num_tokens": 17860.0,
+        "mean_token_accuracy": 0.68675497174263,
+        "epoch": 5.0,
+        "step": 10
+      },
+      {
+        "loss": 0.0983639657497406,
+        "grad_norm": 0.38102129101753235,
+        "learning_rate": 2.5072087818176382e-06,
+        "entropy": 0.2062469780445099,
+        "num_tokens": 35720.0,
+        "mean_token_accuracy": 0.9826846897602082,
+        "epoch": 10.0,
+        "step": 20
+      }
+    ],
+    "effective_args": {
+      "fp16": false,
+      "bf16": true,
+      "gradient_checkpointing": true,
+      "tf32": null,
+      "per_device_train_batch_size": 4,
+      "gradient_accumulation_steps": 2,
+      "optim": "adamw_torch_fused",
+      "lr_scheduler_type": "cosine",
+      "warmup_steps": 6,
+      "seed": 42
+    }
+  },
+  "execution": {
+    "operator": "Codex, at the user's request, on the user's local GPU",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.8",
+    "gpu": "NVIDIA GeForce RTX 5070 Ti",
+    "cuda": "13.0",
+    "fresh_process": true,
+    "source_url": "https://github.com/matsuolab/lecture-ai-engineering-2026/blob/main/notebooks/lora_format_tuning.ipynb",
+    "source_sha256": "027b717a01c4413ae96ed1f3f84b0b2c5815225a7be8c40c6205fec3d0b2aa80",
+    "changes": [
+      "Local output/cache paths",
+      "num_train_epochs for the 10-epoch run",
+      "Added timing and training-log capture; display converted to console output",
+      "Explicit seed 42 before model load in both runs"
+    ]
+  }
+}
